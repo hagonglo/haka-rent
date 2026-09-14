@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#0a0a0a"/>
+  <path d="M0 125h1600M0 250h1600M0 375h1600M0 500h1600M0 625h1600M0 750h1600M0 875h1600M200 0v1000M400 0v1000M600 0v1000M800 0v1000M1000 0v1000M1200 0v1000M1400 0v1000" stroke="#202020"/>
+  <g fill="none" stroke="#2456ff" stroke-width="10">
+    <path d="M390 360h570l125 105v230H390z"/>
+    <circle cx="1100" cy="575" r="185"/>
+    <circle cx="1100" cy="575" r="125"/>
+    <path d="M485 360v-95h360l85 95M515 695v75h410v-75M320 430h70v195h-70z"/>
+  </g>
+  <g fill="#fff" font-family="Arial,Helvetica,sans-serif">
+    <text x="70" y="100" font-size="28" font-weight="700" letter-spacing="7">CAMERA / 001</text>
+    <text x="70" y="910" font-size="92" font-weight="900" letter-spacing="-4">SONY F55</text>
+  </g>
+  <text x="1530" y="910" fill="#707070" font-family="Arial" font-size="22" text-anchor="end" letter-spacing="4">SUPER 35 · 4K · PL</text>
+</svg>
