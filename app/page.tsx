@@ -10,7 +10,20 @@ export default function Home() {
       <SiteHeader theme="dark" />
 
       <section className="hero" aria-labelledby="hero-title">
-        <div className="hero-grid" aria-hidden="true" />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+          tabIndex={-1}
+          style={{ position: "absolute", inset: 0, zIndex: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+        >
+          <source src="/videos/hero.webm" type="video/webm" />
+        </video>
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, zIndex: 1, background: "linear-gradient(90deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.44) 56%, rgba(0,0,0,.58) 100%), linear-gradient(180deg, rgba(0,0,0,.24) 0%, rgba(0,0,0,.46) 100%)", pointerEvents: "none" }} />
+        <div className="hero-grid" aria-hidden="true" style={{ zIndex: 2 }} />
         <div className="hero-index" aria-hidden="true">01</div>
         <div className="page-shell hero-content">
           <p className="eyebrow light">Cotonou · Bénin</p>
