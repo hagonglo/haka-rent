@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
-    "start": "next start"
+    "start": "next start",
+    "catalogue:import": "node --experimental-strip-types scripts/import-catalogue.ts"
   },
   "dependencies": {
     "lucide-react": "^1.31.0",
