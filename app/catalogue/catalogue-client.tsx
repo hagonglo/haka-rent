@@ -11,7 +11,7 @@ export function CatalogueClient({ initialCategory = "Tout" }: { initialCategory?
     const needle = query.trim().toLocaleLowerCase("fr");
     return equipment.filter((item) => {
       const matchesCategory = category === "Tout" || item.category === category;
-      const haystack = `${item.brand} ${item.name} ${item.category} ${item.specs.join(" ")}`.toLocaleLowerCase("fr");
+      const haystack = `${item.brand} ${item.name} ${item.model} ${item.category} ${item.subcategory} ${item.description} ${item.specs.join(" ")}`.toLocaleLowerCase("fr");
       return matchesCategory && (!needle || haystack.includes(needle));
     });
   }, [category, query]);
