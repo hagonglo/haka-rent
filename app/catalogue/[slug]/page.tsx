@@ -4,17 +4,18 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { CatalogueImage } from "@/components/catalogue-image";
 import { SiteHeader } from "@/components/site-header";
-import { equipment, getEquipment } from "@/lib/equipment";
+import { equipment } from "@/lib/equipment";
+import { getPublishedEquipmentBySlug } from "@/lib/catalogue-store";
 
 export function generateStaticParams() { return equipment.map((item) => ({ slug: item.slug })); }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params; const item = getEquipment(slug);
+  const { slug } = await params; const item = await getPublishedEquipmentBySlug(slug);
   return item ? { title: `${item.brand} ${item.name}`, description: item.description } : {};
 }
 
 export default async function EquipmentPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params; const item = getEquipment(slug); if (!item) notFound();
+  const { slug } = await params; const item = await getPublishedEquipmentBySlug(slug); if (!item) notFound();
   return <main className="detail-page"><SiteHeader />
     <div className="detail-breadcrumb"><div className="page-shell"><Link href="/catalogue"><ArrowLeft aria-hidden="true" size={15} /> Catalogue</Link><span> · {item.category} · {item.name}</span></div></div>
     <article className="detail-layout">

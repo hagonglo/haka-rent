@@ -9,6 +9,8 @@
     "catalogue:import": "node --experimental-strip-types scripts/import-catalogue.ts"
   },
   "dependencies": {
+    "@supabase/ssr": "0.12.7",
+    "@supabase/supabase-js": "2.116.0",
     "lucide-react": "^1.31.0",
     "next": "16.3.4",
     "react": "19.2.6",

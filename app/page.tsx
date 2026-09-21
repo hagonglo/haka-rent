@@ -2,9 +2,12 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { EquipmentCard } from "@/components/equipment-card";
 import { SiteHeader } from "@/components/site-header";
-import { categories, equipment } from "@/lib/equipment";
+import { categories } from "@/lib/equipment";
+import { getPublishedEquipment } from "@/lib/catalogue-store";
 
-export default function Home() {
+export default async function Home() {
+  const equipment = await getPublishedEquipment();
+  const featured = equipment.filter((item) => item.featured);
   return (
     <main>
       <SiteHeader theme="dark" />
@@ -64,7 +67,7 @@ export default function Home() {
             <Link href="/catalogue" className="arrow-link light-link">Tout voir <ArrowRight aria-hidden="true" size={18} /></Link>
           </div>
           <div className="equipment-grid home-equipment-grid">
-            {equipment.slice(0, 4).map((item) => <EquipmentCard item={item} key={item.slug} dark />)}
+            {(featured.length ? featured : equipment).slice(0, 4).map((item) => <EquipmentCard item={item} key={item.slug} dark />)}
           </div>
         </div>
       </section>

@@ -129,9 +129,27 @@ button, input { font: inherit; }
 .admin-photo-grid { margin-top:13px; display:grid; grid-template-columns:repeat(4,1fr); gap:9px; }
 .admin-photo-grid > div { position:relative; aspect-ratio:4/3; display:grid; place-items:center; overflow:hidden; background:#ecece8; }
 .admin-photo-grid img { object-fit:cover; }
+.admin-photo-grid > div > button { position:absolute; top:6px; right:6px; width:28px; height:28px; display:grid; place-items:center; color:white; background:rgba(0,0,0,.72); border:0; cursor:pointer; }
+.admin-file-input { display:none; }
+.admin-actions button:disabled, .admin-form-section-title button:disabled, .admin-topbar button:disabled { cursor:wait; opacity:.6; }
+.admin-actions > span { display:flex; align-items:center; gap:7px; }
+.admin-spinner { animation:admin-spin .8s linear infinite; }
+@keyframes admin-spin { to { transform:rotate(360deg); } }
 .admin-actions { position:sticky; bottom:0; margin:28px -30px 0; padding:17px 30px; display:flex; align-items:center; justify-content:flex-end; gap:10px; background:rgba(255,255,255,.96); border-top:1px solid #d5d5d0; }
 .admin-actions > span { margin-right:auto; color:#777; font-size:.7rem; }
 .admin-empty { align-items:center; justify-content:center; color:#777; }
+.admin-login-shell { min-height:100vh; display:grid; place-items:center; padding:24px; color:white; background:#070707; }
+.admin-login-card { width:min(540px,100%); padding:clamp(32px,6vw,64px); display:grid; gap:24px; background:#111; border:1px solid #292929; }
+.admin-login-card .admin-logo { margin-bottom:32px; }
+.admin-login-card h1 { margin:0; max-width:420px; font-size:clamp(2.8rem,7vw,5.4rem); line-height:.86; letter-spacing:-.06em; text-transform:uppercase; }
+.admin-login-copy { margin:0; max-width:420px; color:#aaa; line-height:1.6; }
+.admin-login-email { min-height:52px; padding:0 16px; display:flex; align-items:center; gap:11px; color:#ddd; background:#1b1b1b; border:1px solid #333; }
+.admin-login-card .admin-primary { width:100%; }
+.admin-login-card .admin-primary:disabled { cursor:wait; opacity:.65; }
+.admin-login-message { padding:20px; display:flex; align-items:flex-start; gap:14px; color:#dff4e7; background:#10291b; border:1px solid #27583a; }
+.admin-login-message p { margin:6px 0 0; color:#a7c8b2; line-height:1.5; }
+.admin-login-error { margin:0; color:#ffb4b4; }
+.admin-login-back { color:#888; font-size:.72rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
 
 @media (max-width:1100px) {
   .admin-shell { grid-template-columns:82px minmax(0,1fr); }

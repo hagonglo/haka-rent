@@ -3,6 +3,18 @@ create table public.admin_users (
   created_at timestamptz not null default now()
 );
 
+create schema if not exists private;
+revoke all on schema private from public, anon, authenticated;
+
+create table private.admin_email_allowlist (
+  email text primary key check (email = lower(email)),
+  created_at timestamptz not null default now()
+);
+
+insert into private.admin_email_allowlist (email)
+values ('hakaarent@gmail.com')
+on conflict (email) do nothing;
+
 create table public.catalogue_items (
   id uuid primary key default gen_random_uuid(),
   slug text not null unique,
@@ -114,6 +126,39 @@ on public.catalogue_items
 for delete
 to authenticated
 using ((select public.is_catalogue_admin()));
+
+create or replace function private.sync_catalogue_admin()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $$
+begin
+  if exists (
+    select 1
+    from private.admin_email_allowlist
+    where email = lower(new.email)
+  ) then
+    insert into public.admin_users (user_id)
+    values (new.id)
+    on conflict (user_id) do nothing;
+  else
+    delete from public.admin_users where user_id = new.id;
+  end if;
+
+  return new;
+end;
+$$;
+
+revoke all on function private.sync_catalogue_admin() from public, anon, authenticated;
+
+create trigger sync_catalogue_admin_after_auth_change
+after insert or update of email on auth.users
+for each row execute function private.sync_catalogue_admin();
+
+grant usage on schema public to anon, authenticated;
+grant select on public.catalogue_items to anon, authenticated;
+grant insert, update, delete on public.catalogue_items to authenticated;
 
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values (
