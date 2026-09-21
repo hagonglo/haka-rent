@@ -1386,7 +1386,7 @@ export const equipment: Equipment[] = [
     "availability": "Disponible",
     "featured": false,
     "images": [
-      "/images/catalogue/bras-deport-avenger_01"
+      "/images/catalogue/bras-deport-avenger_01.webp"
     ],
     "alt": "Bras de déport Avenger — matériel disponible chez Haka Rent",
     "whatsapp": "https://api.whatsapp.com/send?phone=22997090941&text=Bonjour%20Haka%20Rent%2C%20je%20souhaite%20des%20informations%20sur%20Bras%20de%20d%C3%A9port%20Avenger."
