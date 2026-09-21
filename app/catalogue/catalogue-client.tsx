@@ -2,19 +2,19 @@
 
 import { useMemo, useState } from "react";
 import { EquipmentCard } from "@/components/equipment-card";
-import { categories, equipment } from "@/lib/equipment";
+import { categories, type Equipment } from "@/lib/equipment";
 
-export function CatalogueClient({ initialCategory = "Tout" }: { initialCategory?: string }) {
+export function CatalogueClient({ equipment, initialCategory = "Tout" }: { equipment: Equipment[]; initialCategory?: string }) {
   const [category, setCategory] = useState(initialCategory);
   const [query, setQuery] = useState("");
   const filtered = useMemo(() => {
     const needle = query.trim().toLocaleLowerCase("fr");
     return equipment.filter((item) => {
       const matchesCategory = category === "Tout" || item.category === category;
-      const haystack = `${item.brand} ${item.name} ${item.category} ${item.specs.join(" ")}`.toLocaleLowerCase("fr");
+      const haystack = `${item.brand} ${item.name} ${item.model} ${item.category} ${item.subcategory} ${item.description} ${item.specs.join(" ")}`.toLocaleLowerCase("fr");
       return matchesCategory && (!needle || haystack.includes(needle));
     });
-  }, [category, query]);
+  }, [category, equipment, query]);
 
   return <>
     <section className="catalogue-controls" aria-label="Filtres du catalogue"><div className="page-shell controls-inner">
