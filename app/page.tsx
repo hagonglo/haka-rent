@@ -1,13 +1,18 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { EquipmentCard } from "@/components/equipment-card";
+import { RealisationCard } from "@/components/realisation-card";
 import { SiteHeader } from "@/components/site-header";
 import { categories } from "@/lib/equipment";
 import { getPublishedEquipment } from "@/lib/catalogue-store";
+import { getPublishedRealisations } from "@/lib/realisation-store";
 
 export default async function Home() {
   const equipment = await getPublishedEquipment();
+  const realisations = await getPublishedRealisations();
   const featured = equipment.filter((item) => item.featured);
+  const featuredRealisations = realisations.filter((item) => item.featured);
+  const homeRealisations = (featuredRealisations.length ? featuredRealisations : realisations).slice(0, 3);
   return (
     <main>
       <SiteHeader theme="dark" />
@@ -73,17 +78,13 @@ export default async function Home() {
       </section>
 
       <section id="realisations" className="editorial-section">
-        <div className="page-shell editorial-grid">
-          <div>
+        <div className="page-shell">
+          <div className="section-heading">
             <p className="eyebrow">Sur les plateaux</p>
             <h2>Des outils au service de l’image.</h2>
+            <Link href="/realisations" className="arrow-link">Toutes les réalisations <ArrowRight aria-hidden="true" size={18} /></Link>
           </div>
-          <div className="editorial-copy">
-            <p>Haka Rent accompagne les équipes de fiction, documentaire, clip et publicité avec un parc préparé pour le tournage.</p>
-            <a href="https://www.instagram.com/haka_rent" target="_blank" rel="noreferrer" className="arrow-link">
-              Voir les productions <ArrowRight aria-hidden="true" size={18} />
-            </a>
-          </div>
+          {homeRealisations.length ? <div className="home-realisations-grid">{homeRealisations.map((item, index) => <RealisationCard item={item} index={index} key={item.id} />)}</div> : <div className="editorial-grid editorial-placeholder"><p>Haka Rent accompagne les équipes de fiction, documentaire, clip et publicité avec un parc préparé pour le tournage.</p><Link href="/realisations" className="arrow-link">Découvrir bientôt <ArrowRight aria-hidden="true" size={18} /></Link></div>}
         </div>
       </section>
 
