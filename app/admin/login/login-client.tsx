@@ -17,7 +17,7 @@ export function AdminLogin({ callbackError = false }: { callbackError?: boolean 
     const { error: authError } = await supabase.auth.signInWithOtp({
       email: ADMIN_EMAIL,
       options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback?next=/admin`,
+        emailRedirectTo: `${window.location.origin}/auth/confirm?next=/admin`,
         shouldCreateUser: true,
       },
     });

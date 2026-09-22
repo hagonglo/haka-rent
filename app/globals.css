@@ -148,6 +148,7 @@ button, input { font: inherit; }
 .admin-login-card .admin-primary:disabled { cursor:wait; opacity:.65; }
 .admin-login-message { padding:20px; display:flex; align-items:flex-start; gap:14px; color:#dff4e7; background:#10291b; border:1px solid #27583a; }
 .admin-login-message p { margin:6px 0 0; color:#a7c8b2; line-height:1.5; }
+.admin-login-confirmation svg { flex:none; }
 .admin-login-error { margin:0; color:#ffb4b4; }
 .admin-login-back { color:#888; font-size:.72rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
 
