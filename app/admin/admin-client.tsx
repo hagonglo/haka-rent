@@ -149,7 +149,7 @@ export function AdminCatalogue({ initialEquipment, categories }: Props) {
     <main className="admin-shell">
       <aside className="admin-sidebar">
         <div className="admin-logo">HAKA<span>RENT</span></div>
-        <nav aria-label="Navigation de gestion"><a className="active" href="#catalogue"><FilePenLine size={18} /> Catalogue</a><a href="#photos"><ImagePlus size={18} /> Médiathèque</a></nav>
+        <nav aria-label="Navigation de gestion"><a className="active" href="/admin"><FilePenLine size={18} /> Catalogue</a><a href="/admin/realisations"><ImagePlus size={18} /> Réalisations</a></nav>
         <div className="admin-user"><span>Administrateur</span><button type="button" onClick={signOut} aria-label="Se déconnecter"><LogOut size={17} /></button></div>
       </aside>
 
