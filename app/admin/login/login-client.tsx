@@ -1,18 +1,14 @@
 "use client";
 
-
 import { useState } from "react";
 import { ArrowRight, Mail } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
-
 const ADMIN_EMAIL = "hakaarent@gmail.com";
-
 
 export function AdminLogin({ callbackError = false }: { callbackError?: boolean }) {
   const [state, setState] = useState<"idle" | "sending" | "sent">("idle");
   const [error, setError] = useState(callbackError ? "Le lien est invalide ou expiré. Demandez-en un nouveau." : "");
-
 
   async function sendLink() {
     setState("sending");
@@ -26,17 +22,14 @@ export function AdminLogin({ callbackError = false }: { callbackError?: boolean 
       },
     });
 
-
     if (authError) {
       setError("Impossible d’envoyer le lien de connexion. Réessayez dans un instant.");
       setState("idle");
       return;
     }
 
-
     setState("sent");
   }
-
 
   return (
     <main className="admin-login-shell">
@@ -66,3 +59,4 @@ export function AdminLogin({ callbackError = false }: { callbackError?: boolean 
       </section>
     </main>
   );
+}
